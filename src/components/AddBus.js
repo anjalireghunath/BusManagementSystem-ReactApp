@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import Header from './Header'
 
@@ -10,6 +11,17 @@ const AddBus = () => {
     const addBus=()=>{
         const data={"route":route,"busname":busname,"busregno":busregno,"owner":owner,"contactnum":contactnum}
         console.log(data)
+        axios.post("http://localhost:4004/api/addroute",data).then((response)=>{
+            console.log(response.data)
+            if(response.data.status=="success")
+            {
+                alert("successfully added")
+            }
+            else
+            {
+                alert("failed to add")
+            }
+        })
     }
   return (
     <div>

@@ -1,30 +1,13 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import Header from './Header'
 
 const View = () => {
-    var viewbus=[
-        {
-           "route":"pta-konni-pathanapuram",
-           "busname":"lekshmi",
-           "busregno":"kl 03-4523",
-           "ownername":"shaji",
-           "contactnum":"8765456783"
-        },
-        {
-            "route":"pta-konni-thannithod",
-           "busname":"bluehill",
-           "busregno":"kl 03-4567",
-           "ownername":"bluehill",
-           "contactnum":"8765456765"
-        },
-{
-           "route":"punalur-konni-pathanmthitta",
-           "busname":"malu",
-           "busregno":"kl 02-4573",
-           "ownername":"mahi",
-           "contactnum":"8765456783"
-}
-    ]
+    var [viewbus,setViewbus]=useState([])
+    axios.get("http://localhost:4004/api/viewall").then((response)=>{
+      console.log(response.data)
+      setViewbus(response.data)
+    })
   return (
     <div>
 <Header/>
